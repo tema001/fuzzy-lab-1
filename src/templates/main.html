@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Centering the form */
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Styling the form inputs */
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            transition: background-color 0.2s ease;
+        }
+
+        input[type="number"]:focus {
+            background-color: #e0f7fa;
+            outline: none;
+            border-color: #00796b;
+        }
+
+        /* Styling the submit button */
+        button {
+            padding: 12px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .header {
+            font-size: 18px;
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Submit Candidate Data</h2>
+        <form action="/submit" method="post">
+            <div class="header">Work experience</div>
+            <input type="number" id="experience" name="experience" placeholder="Enter experience" value="{{ experience | default(0) }}">
+            <div class="description">0 - 10</div>
+            <div class="header">Average diploma score</div>
+            <input type="number" id="diploma_score" name="diploma_score" placeholder="Enter diploma score" value="{{ diploma_score | default(60) }}">
+            <div class="description">60 - 100</div>
+            <div class="header">Professional test score</div>
+            <input type="number" id="prof_test" name="prof_test" placeholder="Enter test" value="{{ prof_test | default(0) }}">
+            <div class="description">0 - 100</div>
+            <div class="header">English test score</div>
+            <input type="number" id="eng_test" name="eng_test" placeholder="Enter english level" value="{{ eng_test | default(0) }}">
+            <div class="description">0 - 10</div>
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if response_text %}
+            <h3>{{ response_text }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
